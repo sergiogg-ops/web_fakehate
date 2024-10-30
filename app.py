@@ -10,6 +10,13 @@ from numpy.random import randint
 import os
 import tempfile
 
+# Constants
+DATA_PATH = 'data.json'
+LABEL = {'Real': 1, 'Fake': 0}
+SENDER_EMAIL = "bot.fake.news@gmail.com"
+SENDER_PASSWORD = "yuvpgvblrhadplhq "  # App-specific password
+RECEIVER_EMAIL = "sgomgon@prhlt.upv.es"
+
 app = Flask(__name__)
 
 # Configure Flask-Session
@@ -17,13 +24,7 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_FILE_DIR'] = tempfile.gettempdir()
 app.secret_key = 'f4k3nh4t3'  # For session management, update this key
 Session(app)
-
-# Constants
-DATA_PATH = 'data.json'
-LABEL = {'Real': 1, 'Fake': 0}
-SENDER_EMAIL = "bot.fake.news@gmail.com"
-SENDER_PASSWORD = "yuvpgvblrhadplhq "  # App-specific password
-RECEIVER_EMAIL = "sgomgon@prhlt.upv.es"
+data = read_json(DATA_PATH)
 
 def sample_data(data, task):
     MAX = 50 if task == 'hate speech' else 20
@@ -63,16 +64,19 @@ def index():
 
 @app.route('/start', methods=['POST'])
 def start():
-    task = request.form.get('task')
-    #texts, headlines, labels = read_data(DATA_PATH, task)
-    idxs, labels = sample_data(data, task)
-    
-    # Store data in server-side session
-    session['texts'] = idxs
-    session['labels'] = labels
-    session['results'] = [0] * len(idxs)
-    session['curr_t'] = 0
-    session['task'] = task
+    try:
+        task = request.form.get('task')
+        #texts, headlines, labels = read_data(DATA_PATH, task)
+        idxs, labels = sample_data(data, task)
+        
+        # Store data in server-side session
+        session['texts'] = idxs
+        session['labels'] = labels
+        session['results'] = [0] * len(idxs)
+        session['curr_t'] = 0
+        session['task'] = task
+    except:
+        print('Error')
     
     return redirect(url_for('classify'))
 
@@ -146,14 +150,13 @@ def send_report():
     return render_template('index.html')
 
 # Redirect all HTTP traffic to HTTPS
-@app.before_request
-def before_request():
-    if not request.is_secure and app.env != 'development':
-        url = request.url.replace('http://', 'https://', 1)
-        return redirect(url, code=301)
+# @app.before_request
+# def before_request():
+#     if not request.is_secure and app.env != 'development':
+#         url = request.url.replace('http://', 'https://', 1)
+#         return redirect(url, code=301)
 
 
 if __name__ == '__main__':
-    data = read_json(DATA_PATH)
     #app.run(debug=True) # For local development
     app.run(host='0.0.0.0', port=80, debug = False) # For deployment

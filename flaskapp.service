@@ -5,9 +5,10 @@ After=network.target
 
 [Service]
 User=sergio
-WorkingDirectory=/web_fakehate
+WorkingDirectory=/home/sergio/web_fakehate
 Environment="PATH=/home/sergio/miniconda3/envs/web/bin"
-ExecStart=/home/sergio/miniconda3/envs/web/bin/gunicorn --workers 3 --bind unix:flaskapp.sock -m 007 wsgi:app
+ExecStart=/home/sergio/miniconda3/envs/web/bin/gunicorn --workers 3 --bind unix:/home/sergio/web_fakehate/flaskapp.sock -m 0077 wsgi:app
+
 
 [Install]
 WantedBy=multi-user.target

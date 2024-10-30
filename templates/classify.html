@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classify Text</title>
+</head>
+<body>
+    <h2>Classification Task</h2>
+    {% if headline %}
+        <h3>{{ headline }}</h3>
+    {% endif %}
+    <p>{{ text }}</p>
+    <form action="/submit_classification" method="POST">
+        <button name="classification" value="1" style="font-size:16px">{{ button1 }}</button>
+        <button name="classification" value="0" style="font-size:16px">{{ button2 }}</button>
+    </form>
+</body>
+</html>

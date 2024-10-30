@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report</title>
+</head>
+<body>
+    <h2>Classification Report</h2>
+    <!--<p>F1 Score: {{ f1_score }}</p>-->
+    <p>Accuracy: {{ accuracy }}</p>
+    
+    <form action="/send_report" method="POST">
+        <label for="user_name" style="font-size:16px">Enter Your Name:</label>
+        <input type="text" name="user_name" id="user_name" style="font-size:16px" required>
+        <button type="submit" style="font-size:16px">Send Report</button>
+    </form>
+    
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>

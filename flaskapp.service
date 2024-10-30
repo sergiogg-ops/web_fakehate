@@ -1,0 +1,13 @@
+# /etc/systemd/system/flaskapp.service
+[Unit]
+Description=Flask Web Application
+After=network.target
+
+[Service]
+User=your_username
+WorkingDirectory=/path/to/your/app
+Environment="PATH=/path/to/your/conda/env/bin"
+ExecStart=/path/to/your/conda/env/bin/gunicorn --workers 3 --bind unix:flaskapp.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target

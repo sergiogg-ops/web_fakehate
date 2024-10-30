@@ -1,0 +1,10 @@
+# /etc/nginx/sites-available/flaskapp
+server {
+    listen 80;
+    server_name snell.prhlt.upv.es;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/path/to/your/app/flaskapp.sock;
+    }
+}

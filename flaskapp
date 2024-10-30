@@ -5,6 +5,6 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/path/to/your/app/flaskapp.sock;
+        proxy_pass http://unix:web_fakehate/flaskapp.sock;
     }
 }

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for
 from pandas import read_json
 from flask_session import Session
 from pandas import read_json
@@ -144,6 +144,13 @@ def send_report():
     send_email(SENDER_EMAIL, SENDER_PASSWORD, RECEIVER_EMAIL, subject, body)   
     #return render_template('report.html', f1_score=f"{f1:.2%}", accuracy=f"{acc:.2%}", task=task, message=message)
     return render_template('index.html')
+
+# Redirect all HTTP traffic to HTTPS
+@app.before_request
+def before_request():
+    if not request.is_secure and app.env != 'development':
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
 
 
 if __name__ == '__main__':

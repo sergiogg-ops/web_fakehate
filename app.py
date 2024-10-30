@@ -15,7 +15,7 @@ app = Flask(__name__)
 # Configure Flask-Session
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_FILE_DIR'] = tempfile.gettempdir()
-app.secret_key = 'your_secret_key'  # For session management, update this key
+app.secret_key = 'f4k3nh4t3'  # For session management, update this key
 Session(app)
 
 # Constants
@@ -23,7 +23,7 @@ DATA_PATH = 'data.json'
 LABEL = {'Real': 1, 'Fake': 0}
 SENDER_EMAIL = "bot.fake.news@gmail.com"
 SENDER_PASSWORD = "yuvpgvblrhadplhq "  # App-specific password
-RECEIVER_EMAIL = "prosso@dsic.upv.es"
+RECEIVER_EMAIL = "sgomgon@prhlt.upv.es"
 
 def sample_data(data, task):
     MAX = 50 if task == 'hate speech' else 20
@@ -32,7 +32,6 @@ def sample_data(data, task):
     subset = data[data['task'] == task].sample(MAX)
     idxs = subset.index.tolist()
     labels = [LABEL[l] for l in data['label'][idxs]] if task == 'fake news' else data['HS'][idxs].tolist()
-    print(labels)
     return idxs, labels
 
 
@@ -149,5 +148,5 @@ def send_report():
 
 if __name__ == '__main__':
     data = read_json(DATA_PATH)
-    #app.run(debug=True) # For local development
-    app.run(host='0.0.0.0', port=5000, debug = False) # For deployment
+    app.run(debug=True) # For local development
+    #app.run(host='0.0.0.0', port=5000, debug = False) # For deployment

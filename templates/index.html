@@ -3,12 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Select Task</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            min-width: 250px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <h2>Select Task</h2>
     <form action="/start" method="POST">
-        <button name="task" value="fake news" style="font-size:16px">Fake News Classification</button>
-        <button name="task" value="hate speech" style="font-size:16px">Hate Speech Detection</button>
+        <button name="task" value="fake news">Fake News Classification</button>
+        <button name="task" value="hate speech">Hate Speech Detection</button>
     </form>
 </body>
 </html>

@@ -3,11 +3,10 @@ from pandas import read_json
 from flask_session import Session
 from pandas import read_json
 from sklearn.metrics import f1_score, accuracy_score
-import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from numpy.random import randint
-import os
+from time import time, ctime
+import smtplib
 import tempfile
 
 # Constants
@@ -15,7 +14,7 @@ DATA_PATH = 'data.json'
 LABEL = {'Real': 1, 'Fake': 0}
 SENDER_EMAIL = "bot.fake.news@gmail.com"
 SENDER_PASSWORD = "yuvpgvblrhadplhq "  # App-specific password
-RECEIVER_EMAIL = "sgomgon@prhlt.upv.es"
+RECEIVER_EMAIL = "prosso@dsic.upv.es"
 
 app = Flask(__name__)
 
@@ -28,8 +27,6 @@ data = read_json(DATA_PATH)
 
 def sample_data(data, task):
     MAX = 50 if task == 'hate speech' else 20
-    #MAX = 5
-    #idxs = randint(0, len(data), MAX)
     subset = data[data['task'] == task].sample(MAX)
     idxs = subset.index.tolist()
     labels = [LABEL[l] for l in data['label'][idxs]] if task == 'fake news' else data['HS'][idxs].tolist()
@@ -96,9 +93,9 @@ def classify():
     task = session['task']
     
     if task == 'fake news':
-        return render_template('classify.html', text=text, headline=headline, button1='Real', button2='Fake')
+        return render_template('classify.html', text=text, headline=headline, button1='Real', button2='Fake',current=curr_t+1,max=len(session['texts']))
     else:
-        return render_template('classify.html', text=text, headline=headline, button1='Hate Speech', button2='Non Hate Speech')
+        return render_template('classify.html', text=text, headline=headline, button1='Hate Speech', button2='Non Hate Speech',current=curr_t+1,max=len(session['texts']))
 
 
 @app.route('/submit_classification', methods=['POST'])
@@ -147,7 +144,11 @@ def send_report():
     
     send_email(SENDER_EMAIL, SENDER_PASSWORD, RECEIVER_EMAIL, subject, body)   
     #return render_template('report.html', f1_score=f"{f1:.2%}", accuracy=f"{acc:.2%}", task=task, message=message)
-    return render_template('index.html')
+    hora = ctime(time())
+    with open('log.csv','a') as log:
+        log.write(f'{user_name},{task},{hora},{f1:.2%},{acc:.2%}\n')
+    #return render_template('index.html')
+    return redirect(url_for('index'))
 
 # Redirect all HTTP traffic to HTTPS
 # @app.before_request

@@ -1,61 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Report</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+  <head>
+    <title>report - Well Lit Torn Wildcat</title>
+    <meta property="og:title" content="report - Well Lit Torn Wildcat" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
 
-        h2 {
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-        }
-
-        button {
-            padding: 15px 30px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            min-width: 250px;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
     </style>
-</head>
-<body>
-    <h2>Classification Report</h2>
-    <!--<p>F1 Score: {{ f1_score }}</p>-->
-    <p>Accuracy: {{ accuracy }}</p>
-    
-    <form action="/send_report" method="POST">
-        <label for="user_name" style="font-size:16px">Enter Your Name:</label>
-        <input type="text" name="user_name" id="user_name" style="font-size:16px" required>
-        <button type="submit" style="font-size:16px">Send Report</button>
-    </form>
-    
-    {% if message %}
-        <p>{{ message }}</p>
-    {% endif %}
-</body>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-theme-neutral-dark);
+        background: var(--dl-color-theme-neutral-light);
+
+        fill: var(--dl-color-theme-neutral-dark);
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/animate.css@4.1.1/animate.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+    />
+  </head>
+  <body>
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+      <link href="./report.css" rel="stylesheet" />
+
+      <div class="report-container">
+        <sign-up8-wrapper class="sign-up8-wrapper">
+          <!--SignUp8 component-->
+          <div class="sign-up8-container1">
+            <div class="sign-up8-max-width thq-section-max-width">
+              <div class="sign-up8-form-root">
+                <div class="sign-up8-form1">
+                  <div class="sign-up8-title-root">
+                    <h2 class="sign-up8-text1 thq-heading-2">
+                      <fragment class="report-fragment1">
+                        <span class="report-text1">Test Completed</span>
+                      </fragment>
+                    </h2>
+                    <div class="sign-up8-have-an-account-login1"></div>
+                  </div>
+                  <form class="sign-up8-form2">
+                    <div class="sign-up8-email">
+                      <label for="thq-sign-up-8-email" class="thq-body-large">
+                        User Name:
+                      </label>
+                      <input
+                        type="text"
+                        id="user_name"
+                        required="true"
+                        placeholder="Recognizable name"
+                        name="user_name"
+                        value="Recognizable name"
+                        class="sign-up8-textinput thq-input thq-body-large"
+                      />
+                    </div>
+                  </form>
+                  <div class="sign-up8-container2">
+                    <p class="sign-up8-text3 thq-body-large">
+                      Your score will be registered and sent to your teacher.
+                    </p>
+                  </div>
+                  <button
+                    type="submit"
+                    class="sign-up8-button thq-button-filled"
+                  >
+                    <span class="sign-up8-text4 thq-body-small">
+                      <fragment class="report-fragment2">
+                        <span class="report-text2">Register score</span>
+                      </fragment>
+                    </span>
+                  </button>
+                  <div class="sign-up8-have-an-account-login2"></div>
+                </div>
+              </div>
+              <div class="sign-up8-container3 thq-section-padding">
+                <div class="sign-up8-list">
+                  <h2 class="sign-up8-text5 thq-heading-2">
+                    <fragment class="report-fragment3">
+                      <span class="report-text3">Accuracy:</span>
+                    </fragment>
+                  </h2>
+                </div>
+                <img
+                  alt="image"
+                  src="https://images.unsplash.com/photo-1527769929977-c341ee9f2033?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDM0NHx8YWJzdHJhY3R8ZW58MHx8fHwxNzEyOTM3OTkzfDA&amp;ixlib=rb-4.0.3&amp;w=1400"
+                  class="sign-up8-image thq-img-ratio-1-1"
+                />
+                <div class="sign-up8-container4"></div>
+              </div>
+            </div>
+          </div>
+        </sign-up8-wrapper>
+      </div>
+    </div>
+  </body>
 </html>

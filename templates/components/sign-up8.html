@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{{ task }}</title>
-    <meta property="og:title" content="{{ task }}" />
+    <title>Well Lit Torn Wildcat</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
@@ -54,43 +53,67 @@
     />
   </head>
   <body>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="../style.css" />
     <div>
-      <link href="{{ url_for('static', filename='css/classify.css') }}" rel="stylesheet" />
-
-      <div class="classify-container1">
-        <div class="classify-container2">
-          <div class="classify-container3">
-            <span id="counter" class="classify-text1">Text {{ current }}/{{ max }}</span>
-            {% if headline %}
-              <h1 id="header">{{ headline }}</h1>
-            {% endif %}
+      <link href="./sign-up8.css" rel="stylesheet" />
+      <div class="sign-up8-container1">
+        <div class="sign-up8-max-width thq-section-max-width">
+          <div class="sign-up8-form-root">
+            <div class="sign-up8-form1">
+              <div class="sign-up8-title-root">
+                <h2 class="sign-up8-text1 thq-heading-2">
+                  <fragment class="sign-up8-fragment1">
+                    <span class="sign-up8-text6">Test Completed</span>
+                  </fragment>
+                </h2>
+                <div class="sign-up8-have-an-account-login1"></div>
+              </div>
+              <form class="sign-up8-form2">
+                <div class="sign-up8-email">
+                  <label for="thq-sign-up-8-email" class="thq-body-large">
+                    User Name:
+                  </label>
+                  <input
+                    type="text"
+                    id="user_name"
+                    required="true"
+                    placeholder="Recognizable name"
+                    name="user_name"
+                    value="Recognizable name"
+                    class="sign-up8-textinput thq-input thq-body-large"
+                  />
+                </div>
+              </form>
+              <div class="sign-up8-container2">
+                <p class="sign-up8-text3 thq-body-large">
+                  Your score will be registered and sent to your teacher.
+                </p>
+              </div>
+              <button type="submit" class="sign-up8-button thq-button-filled">
+                <span class="sign-up8-text4 thq-body-small">
+                  <fragment class="sign-up8-fragment2">
+                    <span class="sign-up8-text7">Register score</span>
+                  </fragment>
+                </span>
+              </button>
+              <div class="sign-up8-have-an-account-login2"></div>
+            </div>
           </div>
-        </div>
-        <div class="classify-container4">
-          <span>
-            {{ text }}
-          </span>
-        </div>
-        <div class="classify-container5">
-          <button
-            type="button"
-            id="button1"
-            name="button1"
-            value="1"
-            class="classify-button1 button"
-          >
-            {{ button1}}
-          </button>
-          <button
-            type="button"
-            id="button2"
-            name="button2"
-            value="0"
-            class="classify-button2 button"
-          >
-            {{ button2 }}
-          </button>
+          <div class="sign-up8-container3 thq-section-padding">
+            <div class="sign-up8-list">
+              <h2 class="sign-up8-text5 thq-heading-2">
+                <fragment class="sign-up8-fragment3">
+                  <span class="sign-up8-text8">Accuracy:</span>
+                </fragment>
+              </h2>
+            </div>
+            <img
+              alt="image"
+              src="https://images.unsplash.com/photo-1527769929977-c341ee9f2033?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDM0NHx8YWJzdHJhY3R8ZW58MHx8fHwxNzEyOTM3OTkzfDA&amp;ixlib=rb-4.0.3&amp;w=1400"
+              class="sign-up8-image thq-img-ratio-1-1"
+            />
+            <div class="sign-up8-container4"></div>
+          </div>
         </div>
       </div>
     </div>

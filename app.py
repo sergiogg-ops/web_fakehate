@@ -62,7 +62,11 @@ def index():
 @app.route('/start', methods=['POST'])
 def start():
     try:
-        task = request.form.get('task')
+        input_request = request.get_json()
+        task = input_request['button']
+        print(task)
+        password = input_request['password']
+        print(password)
         #texts, headlines, labels = read_data(DATA_PATH, task)
         idxs, labels = sample_data(data, task)
         
@@ -159,5 +163,5 @@ def send_report():
 
 
 if __name__ == '__main__':
-    #app.run(debug=True) # For local development
-    app.run(host='0.0.0.0', port=80, debug = False) # For deployment
+    app.run(debug=True) # For local development
+    #app.run(host='0.0.0.0', port=80, debug = False) # For deployment

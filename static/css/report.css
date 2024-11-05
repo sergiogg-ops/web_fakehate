@@ -1,0 +1,221 @@
+.sign-up8-wrapper {
+  display: contents;
+}
+.sign-up8-container1 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+.sign-up8-max-width {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+.sign-up8-form-root {
+  gap: var(--dl-space-space-unit);
+  width: 50%;
+  height: 100%;
+  display: flex;
+  padding: var(--dl-space-space-fourunits);
+  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: center;
+}
+.sign-up8-form1 {
+  gap: var(--dl-space-space-twounits);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.sign-up8-title-root {
+  gap: var(--dl-space-space-halfunit);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.sign-up8-text1 {
+  text-align: center;
+}
+.sign-up8-have-an-account-login1 {
+  gap: var(--dl-space-space-halfunit);
+  border: 2px dashed rgba(120, 120, 120, 0.4);
+  display: flex;
+  align-items: flex-start;
+}
+.sign-up8-form2 {
+  gap: var(--dl-space-space-unit);
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.sign-up8-email {
+  gap: var(--dl-space-space-halfunit);
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+.sign-up8-textinput {
+  width: 100%;
+  border-color: var(--dl-color-theme-primary1);
+  background-color: transparent;
+}
+.sign-up8-container2 {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.sign-up8-text3 {
+  font-size: 16px;
+  text-align: left;
+}
+.sign-up8-button {
+  width: 100%;
+}
+.sign-up8-text4 {
+  text-align: center;
+}
+.sign-up8-have-an-account-login2 {
+  gap: var(--dl-space-space-halfunit);
+  border: 2px dashed rgba(120, 120, 120, 0.4);
+  display: flex;
+  align-items: flex-start;
+}
+.sign-up8-container3 {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  align-self: center;
+  min-height: 600px;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+.sign-up8-list {
+  gap: var(--dl-space-space-unit);
+  height: auto;
+  display: flex;
+  z-index: 100;
+  align-self: stretch;
+  align-items: center;
+  padding-top: var(--dl-space-space-halfunit);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-halfunit);
+  justify-content: center;
+}
+.sign-up8-text5 {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.sign-up8-image {
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  bottom: 0px;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+}
+.sign-up8-container4 {
+  top: 0px;
+  flex: 0 0 auto;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  border: 2px dashed rgba(120, 120, 120, 0.4);
+  bottom: 0px;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: rgba(255,255,255,0.5);
+}
+.report-fragment1 {
+  display: contents;
+}
+.report-text1 {
+  display: inline-block;
+}
+.report-fragment2 {
+  display: contents;
+}
+.report-text2 {
+  display: inline-block;
+}
+.report-fragment3 {
+  display: contents;
+}
+.report-text3 {
+  display: inline-block;
+}
+@media(max-width: 991px) {
+  .sign-up8-max-width {
+    flex-direction: column;
+  }
+  .sign-up8-form-root {
+    width: 100%;
+    padding: var(--dl-space-space-fourunits);
+  }
+  .sign-up8-container3 {
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+  }
+}
+@media(max-width: 767px) {
+  .sign-up8-text5 {
+    text-align: center;
+  }
+}
+@media(max-width: 479px) {
+  .sign-up8-form-root {
+    padding: var(--dl-space-space-oneandhalfunits);
+  }
+  .sign-up8-text3 {
+    text-align: center;
+  }
+  .sign-up8-button {
+    width: 100%;
+  }
+}
+
+.report-container {
+  width: 100%;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.report-fragment1 {
+  display: contents;
+}
+.report-text1 {
+  display: inline-block;
+}
+.report-fragment2 {
+  display: contents;
+}
+.report-text2 {
+  display: inline-block;
+}
+.report-fragment3 {
+  display: contents;
+}
+.report-text3 {
+  display: inline-block;
+}

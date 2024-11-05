@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{{ task }}</title>
-    <meta property="og:title" content="{{ task }}" />
+    <title>404 - Not Found</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
@@ -54,43 +53,19 @@
     />
   </head>
   <body>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="./style.css" />
     <div>
-      <link href="{{ url_for('static', filename='css/classify.css') }}" rel="stylesheet" />
+      <link href="./404.css" rel="stylesheet" />
 
-      <div class="classify-container1">
-        <div class="classify-container2">
-          <div class="classify-container3">
-            <span id="counter" class="classify-text1">Text {{ current }}/{{ max }}</span>
-            {% if headline %}
-              <h1 id="header">{{ headline }}</h1>
-            {% endif %}
-          </div>
+      <div class="not-found-container1">
+        <h3>OOPS! PAGE NOT FOUND</h3>
+        <div class="not-found-container2">
+          <h1 class="not-found-text2">404</h1>
         </div>
-        <div class="classify-container4">
-          <span>
-            {{ text }}
-          </span>
-        </div>
-        <div class="classify-container5">
-          <button
-            type="button"
-            id="button1"
-            name="button1"
-            value="1"
-            class="classify-button1 button"
-          >
-            {{ button1}}
-          </button>
-          <button
-            type="button"
-            id="button2"
-            name="button2"
-            value="0"
-            class="classify-button2 button"
-          >
-            {{ button2 }}
-          </button>
+        <div class="not-found-container3">
+          <h2 class="not-found-text3">
+            WE ARE SORRY, BUT THE PAGE YOU REQUESTED WAS NOT FOUND
+          </h2>
         </div>
       </div>
     </div>

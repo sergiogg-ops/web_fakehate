@@ -1,48 +1,53 @@
 .classify-container1 {
-  width: 100%;
   display: flex;
-  min-height: 100vh;
-  align-items: center;
   flex-direction: column;
-  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  gap: 20px;
 }
+
 .classify-container2 {
-  flex: 0 0 auto;
-  width: 200px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-shrink: 0;
 }
+
 .classify-container3 {
-  width: 762px;
-  height: 90px;
   display: flex;
-  position: relative;
-  align-items: flex-start;
-  justify-content: center;
-}
-.classify-text1 {
-  left: 0px;
-  bottom: 0px;
-  position: absolute;
-  align-self: flex-end;
-}
-.classify-container4 {
-  width: 766px;
-  height: 285px;
-  display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: center;
+  gap: 10px;
 }
+
+.classify-text1 {
+  font-size: 1rem;
+  color: #666;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.classify-container4 {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
 .classify-container5 {
-  flex: 0 0 auto;
-  width: 100%;
-  height: 100px;
   display: flex;
-  align-items: center;
+  gap: 20px;
   justify-content: center;
+  padding: 20px 0;
+  flex-shrink: 0;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  min-width: 100px;
 }
 .classify-button1 {
   margin-right: var(--dl-space-space-unit);

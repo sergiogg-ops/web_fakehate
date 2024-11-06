@@ -54,9 +54,9 @@
     />
   </head>
   <body>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <div>
-      <link href="./report.css" rel="stylesheet" />
+      <link href="{{ url_for('static', filename='css/report.css') }}" rel="stylesheet" />
 
       <div class="report-container">
         <sign-up8-wrapper class="sign-up8-wrapper">
@@ -73,7 +73,7 @@
                     </h2>
                     <div class="sign-up8-have-an-account-login1"></div>
                   </div>
-                  <form class="sign-up8-form2">
+                  <form class="sign-up8-form2" action="/send_report" method="POST">
                     <div class="sign-up8-email">
                       <label for="thq-sign-up-8-email" class="thq-body-large">
                         User Name:
@@ -84,11 +84,10 @@
                         required="true"
                         placeholder="Recognizable name"
                         name="user_name"
-                        value="Recognizable name"
                         class="sign-up8-textinput thq-input thq-body-large"
                       />
                     </div>
-                  </form>
+                  <!--</form>-->
                   <div class="sign-up8-container2">
                     <p class="sign-up8-text3 thq-body-large">
                       Your score will be registered and sent to your teacher.
@@ -104,6 +103,7 @@
                       </fragment>
                     </span>
                   </button>
+                  </form>
                   <div class="sign-up8-have-an-account-login2"></div>
                 </div>
               </div>
@@ -111,7 +111,7 @@
                 <div class="sign-up8-list">
                   <h2 class="sign-up8-text5 thq-heading-2">
                     <fragment class="report-fragment3">
-                      <span class="report-text3">Accuracy:</span>
+                      <span class="report-text3">Accuracy: {{ accuracy }}</span>
                     </fragment>
                   </h2>
                 </div>

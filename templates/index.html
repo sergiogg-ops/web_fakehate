@@ -54,116 +54,101 @@
                                 </fragment>
                             </span>
                         </div>
-                        <div class="features22-container2">
-                            <span class="features22-text12">
-                                <fragment class="home-fragment12">
-                                    <span class="home-text12">Password:</span>
-                                </fragment>
-                            </span>
-                            <input type="text" placeholder="placeholder" class="features22-textinput input" />
-                            <span class="features22-text13">
-                                <fragment class="home-fragment13">
-                                    <span class="home-text13">Required field</span>
-                                </fragment>
-                            </span>
-                        </div>
-                        <div class="features22-container3 thq-grid-auto-300">
-                            <div class="features22-card1 thq-flex-column thq-card">
-                                <img alt="Fake News Image" src="{{ url_for('static', filename='public/fake_news-1400w.png') }}" class="features22-image1 thq-img-round thq-img-ratio-1-1" />
-                                <h1 class="features22-text14">
-                                    <fragment class="home-fragment18">
-                                        <span class="home-text18">Fake News Detection</span>
+                            
+                        <form id="taskForm" action="{{ url_for('start') }}" method="POST">
+                            <input type="hidden" name="task" id="taskInput">
+                            <div class="features22-container2">
+                                <span class="features22-text12">
+                                    <fragment class="home-fragment12">
+                                        <span class="home-text12">Password:</span>
                                     </fragment>
-                                </h1>
-                                <button type="button" id="fake_news_b" class="features22-button1 button" onclick="sendButtonClick('fake news')">
-                                    <span>
-                                        <fragment class="home-fragment14">
-                                            <span class="home-text14">Start test</span>
-                                        </fragment>
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="features22-card2 thq-flex-column thq-card">
-                                <img alt="Hate Speech Image" src="{{ url_for('static', filename='public/hate_speech.png') }}" class="features22-image2 thq-img-round thq-img-ratio-1-1" />
-                                <h1 class="features22-text16">
-                                    <fragment class="home-fragment19">
-                                        <span class="home-text19">Hate Speech Detection</span>
+                                </span>
+                                <!--<input type="text" name="password" placeholder="placeholder" class="features22-textinput input" />-->
+                                <input
+                                    type="text"
+                                    id="password"
+                                    required="true"
+                                    placeholder="lecture password"
+                                    name="password"
+                                    class="sign-up8-textinput thq-input thq-body-large"
+                                />
+                                <span class="features22-text13">
+                                    <fragment class="home-fragment13">
+                                        <span class="home-text13">{{ error }}</span>
                                     </fragment>
-                                </h1>
-                                <button type="button" id="hate_speech_b" class="features22-button2 button" onclick="sendButtonClick('hate speech')">
-                                    <span>
-                                        <fragment class="home-fragment15">
-                                            <span class="home-text15">Start test</span>
-                                        </fragment>
-                                    </span>
-                                </button>
+                                </span>
                             </div>
-                            <div class="features22-card3 thq-flex-column thq-card">
-                                <img alt="Stereotypes Image" src="{{ url_for('static', filename='public/stereotypes-1400w.webp') }}" class="features22-image3 thq-img-round thq-img-ratio-1-1" />
-                                <h1 class="features22-text18">
-                                    <fragment class="home-fragment20">
-                                        <span class="home-text20">Stereotype Identification</span>
-                                    </fragment>
-                                </h1>
-                                <button type="button" id="stereotype_b" class="features22-button3 button" onclick="sendButtonClick('stereotype')">
-                                    <span>
-                                        <fragment class="home-fragment16">
-                                            <span class="home-text16">Start test</span>
+                            
+                            <div class="features22-container3 thq-grid-auto-300">
+                                <div class="features22-card1 thq-flex-column thq-card">
+                                    <img alt="Fake News Image" src="{{ url_for('static', filename='public/fake_news-1400w.png') }}" class="features22-image1 thq-img-round thq-img-ratio-1-1" />
+                                    <h1 class="features22-text14">
+                                        <fragment class="home-fragment18">
+                                            <span class="home-text18">Fake News Detection</span>
                                         </fragment>
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="features22-card4 thq-flex-column thq-card">
-                                <img alt="Products Range Image" src="https://images.unsplash.com/photo-1605557626697-2e87166d88f9?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDEzfHxmZWF0dXJlfGVufDB8fHx8MTcxNjQ2MDYxOHww&amp;ixlib=rb-4.0.3&amp;w=1400" class="features22-image4 thq-img-round thq-img-ratio-1-1" />
-                                <h1 class="features22-text20">
-                                    <fragment class="home-fragment21">
-                                        <span class="home-text21">Irony detection</span>
-                                    </fragment>
-                                </h1>
-                                <button type="button" id="irony_b" class="features22-button4 button" onclick="sendButtonClick('irony')">
-                                    <span>
-                                        <fragment class="home-fragment17">
-                                            <span class="home-text17">Start test</span>
+                                    </h1>
+                                    <button type="submit" id="fake_news_b" class="features22-button1 button" onclick="document.getElementById('taskInput').value='fake news'">
+                                        <span>
+                                            <fragment class="home-fragment14">
+                                                <span class="home-text14">Start test</span>
+                                            </fragment>
+                                        </span>
+                                    </button>
+                                </div>
+                                
+                                <div class="features22-card2 thq-flex-column thq-card">
+                                    <img alt="Hate Speech Image" src="{{ url_for('static', filename='public/hate_speech.png') }}" class="features22-image2 thq-img-round thq-img-ratio-1-1" />
+                                    <h1 class="features22-text16">
+                                        <fragment class="home-fragment19">
+                                            <span class="home-text19">Hate Speech Detection</span>
                                         </fragment>
-                                    </span>
-                                </button>
+                                    </h1>
+                                    <button type="submit" id="hate_speech_b" class="features22-button2 button" onclick="document.getElementById('taskInput').value='hate speech'">
+                                        <span>
+                                            <fragment class="home-fragment15">
+                                                <span class="home-text15">Start test</span>
+                                            </fragment>
+                                        </span>
+                                    </button>
+                                </div>
+                                
+                                <div class="features22-card3 thq-flex-column thq-card">
+                                    <img alt="Stereotypes Image" src="{{ url_for('static', filename='public/stereotype.webp') }}" class="features22-image3 thq-img-round thq-img-ratio-1-1" />
+                                    <h1 class="features22-text18">
+                                        <fragment class="home-fragment20">
+                                            <span class="home-text20">Stereotype Identification</span>
+                                        </fragment>
+                                    </h1>
+                                    <button type="submit" id="stereotype_b" class="features22-button3 button" onclick="document.getElementById('taskInput').value='stereotype'">
+                                        <span>
+                                            <fragment class="home-fragment16">
+                                                <span class="home-text16">Start test</span>
+                                            </fragment>
+                                        </span>
+                                    </button>
+                                </div>
+                                
+                                <div class="features22-card4 thq-flex-column thq-card">
+                                    <img alt="Irony Image" src="{{ url_for('static', filename='public/irony.webp') }}" class="features22-image4 thq-img-round thq-img-ratio-1-1" />
+                                    <h1 class="features22-text20">
+                                        <fragment class="home-fragment21">
+                                            <span class="home-text21">Irony detection</span>
+                                        </fragment>
+                                    </h1>
+                                    <button type="submit" id="irony_b" class="features22-button4 button" onclick="document.getElementById('taskInput').value='irony'">
+                                        <span>
+                                            <fragment class="home-fragment17">
+                                                <span class="home-text17">Start test</span>
+                                            </fragment>
+                                        </span>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </features22-wrapper>
         </div>
     </div>
-
-    <script>
-        function sendButtonClick(task) {
-            // Get the password input value
-            const password = document.querySelector('.features22-textinput.input').value;
-
-            // Create the data object to send
-            const data = {
-                task: task,
-                password: password
-            };
-
-            // Send an AJAX POST request to the Flask app
-            fetch('/start', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                // Optionally handle the response data
-                // For example, you could display a message or redirect
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        }
-    </script>
 </body>
 </html>

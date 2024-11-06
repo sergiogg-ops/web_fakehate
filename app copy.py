@@ -14,8 +14,7 @@ DATA_PATH = 'data.json'
 LABEL = {'Real': 1, 'Fake': 0}
 SENDER_EMAIL = "bot.fake.news@gmail.com"
 SENDER_PASSWORD = "yuvpgvblrhadplhq "  # App-specific password
-RECEIVER_EMAIL = "sgomgon@prhlt.upv.es"
-PASSWORDS = ['fsu']
+RECEIVER_EMAIL = "prosso@dsic.upv.es"
 
 app = Flask(__name__)
 
@@ -27,8 +26,7 @@ Session(app)
 data = read_json(DATA_PATH)
 
 def sample_data(data, task):
-    #MAX = 50 if task == 'hate speech' else 20
-    MAX = 2
+    MAX = 50 if task == 'hate speech' else 20
     subset = data[data['task'] == task].sample(MAX)
     idxs = subset.index.tolist()
     labels = [LABEL[l] for l in data['label'][idxs]] if task == 'fake news' else data['HS'][idxs].tolist()
@@ -64,11 +62,9 @@ def index():
 @app.route('/start', methods=['POST'])
 def start():
     try:
-        task = request.form.get('task')
-        password = request.form.get('password')
-        if not password in PASSWORDS:
-            return render_template('index.html', error='Invalid password')
-        #password = input_request['password']
+        input_request = request.get_json()
+        task = input_request['task']
+        password = input_request['password']
         #texts, headlines, labels = read_data(DATA_PATH, task)
         idxs, labels = sample_data(data, task)
         
@@ -78,13 +74,15 @@ def start():
         session['results'] = [0] * len(idxs)
         session['curr_t'] = 0
         session['task'] = task
-        print(labels)
+        session['password'] = password
+        return jsonify({'success':True,
+                        'redirect': url_for('classify')})
     except:
         print('Error')
-    return redirect(url_for('classify'))
+        return jsonify({'success':False})
 
 
-@app.route('/classify')
+@app.route('/classify', methods=['GET'])
 def classify():
     # Add session validation
     if 'curr_t' not in session:
@@ -110,7 +108,6 @@ def submit_classification():
         return redirect(url_for('index'))
         
     classification = request.form.get('classification')
-    print('classification: ',classification)
     if classification:
         session['results'][session['curr_t']] = int(classification)
         session['curr_t'] += 1

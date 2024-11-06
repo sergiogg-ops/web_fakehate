@@ -72,26 +72,29 @@
             {{ text }}
           </span>
         </div>
+        <form id="classifForm" action="{{ url_for('submit_classification') }}" method="POST">
+          <input type="hidden" name="classification" id="classifInput">
         <div class="classify-container5">
           <button
-            type="button"
+            type="submit"
             id="button1"
-            name="button1"
-            value="1"
+            name="classification"
             class="classify-button1 button"
+            onclick="document.getElementById('classifInput').value=1"
           >
-            {{ button1}}
+            {{ button1 }}
           </button>
           <button
-            type="button"
+            type="submit"
             id="button2"
-            name="button2"
-            value="0"
+            name="classification"
             class="classify-button2 button"
+            onclick="document.getElementById('classifInput').value=0"
           >
             {{ button2 }}
           </button>
         </div>
+      </form>
       </div>
     </div>
   </body>

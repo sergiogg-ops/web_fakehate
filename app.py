@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
-from pandas import read_json
+from pandas import read_json, concat, DataFrame
 from flask_session import Session
-from pandas import read_json
 from sklearn.metrics import f1_score, accuracy_score
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -154,6 +153,9 @@ def send_report():
     hora = ctime(time())
     with open('log.csv','a') as log:
         log.write(f'{user_name},{task},{hora},{f1:.2%},{acc:.2%}\n')
+    log = DataFrame({'user':user_name,'time':hora,'samples':str(session['texts']),'answ':str(results)},index=[0])
+    log = concat((read_json('answ.json'),log),ignore_index=True)
+    log.to_json('answ.json',orient='records')
     return redirect(url_for('index'))
 
 # Redirect all HTTP traffic to HTTPS

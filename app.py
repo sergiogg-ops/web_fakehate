@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for, jsonify
+from flask import Flask, render_template, request, session, redirect, url_for
 from pandas import read_json, concat, DataFrame
 from flask_session import Session
 from sklearn.metrics import f1_score, accuracy_score
@@ -9,12 +9,12 @@ import smtplib
 import tempfile
 
 # Constants
-DATA_PATH = 'data.json'
-LABEL = {'Real': 1, 'Fake': 0}
+DATA_PATH = 'data2.json'
 SENDER_EMAIL = "bot.fake.news@gmail.com"
 SENDER_PASSWORD = "yuvpgvblrhadplhq "  # App-specific password
 RECEIVER_EMAIL = "sgomgon@prhlt.upv.es"
 PASSWORDS = ['fsu']
+LABEL = {'Real': 1, 'Fake': 0}
 
 app = Flask(__name__)
 
@@ -30,7 +30,14 @@ def sample_data(data, task):
     MAX = 2
     subset = data[data['task'] == task].sample(MAX)
     idxs = subset.index.tolist()
-    labels = [LABEL[l] for l in data['label'][idxs]] if task == 'fake news' else data['HS'][idxs].tolist()
+    if task == 'fake news':
+        labels = [LABEL[l] for l in data['label'][idxs]]
+    elif task == 'hate speech':
+        labels = data['HS'][idxs].tolist()
+    elif task == 'stereotype':
+        labels = data['stereotype'][idxs].tolist()
+    elif task == 'irony':
+        labels = data['irony'][idxs].tolist()
     return idxs, labels
 
 
@@ -77,7 +84,6 @@ def start():
         session['results'] = [0] * len(idxs)
         session['curr_t'] = 0
         session['task'] = task
-        print(labels)
     except:
         print('Error')
     return redirect(url_for('classify'))
@@ -97,19 +103,29 @@ def classify():
     task = session['task']
     
     if task == 'fake news':
-        return render_template('classify.html', task=task, text=text, headline=headline, button1='Real', button2='Fake',current=curr_t+1,max=len(session['texts']))
+        name1 = 'Real'
+        name2 = 'Fake'
+    elif task == 'hate speech':
+        name1 = 'Hate Speech'
+        name2 = 'Non Hate Speech'
+    elif task == 'stereotype':
+        name1 = 'Stereotypical'
+        name2 = 'Non Stereotypical'
+    elif task == 'irony':
+        name1 = 'Ironic'
+        name2 = 'Non Ironic'
     else:
-        return render_template('classify.html', task=task, text=text, headline=headline, button1='Hate Speech', button2='Non Hate Speech',current=curr_t+1,max=len(session['texts']))
+        name1 = 'Yes'
+        name2 = 'No'
+    return render_template('classify.html', task=task, text=text, headline=headline, button1=name1, button2=name2,current=curr_t+1,max=len(session['texts']))
 
 
 @app.route('/submit_classification', methods=['POST'])
 def submit_classification():
-    print('Submit classification')
     if 'curr_t' not in session:
         return redirect(url_for('index'))
         
     classification = request.form.get('classification')
-    print('classification: ',classification)
     if classification:
         session['results'][session['curr_t']] = int(classification)
         session['curr_t'] += 1

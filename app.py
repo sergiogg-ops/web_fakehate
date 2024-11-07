@@ -32,12 +32,8 @@ def sample_data(data, task):
     idxs = subset.index.tolist()
     if task == 'fake news':
         labels = [LABEL[l] for l in data['label'][idxs]]
-    elif task == 'hate speech':
-        labels = data['HS'][idxs].tolist()
-    elif task == 'stereotype':
-        labels = data['stereotype'][idxs].tolist()
-    elif task == 'irony':
-        labels = data['irony'][idxs].tolist()
+    else:
+        labels = data['label'][idxs].tolist()
     return idxs, labels
 
 
@@ -164,8 +160,7 @@ def send_report():
     subject = f"{task.capitalize()} Classification Report: {user_name}"
     body = f"Report of {user_name}:\nF1 Score: {f1:.2%}\nAccuracy: {acc:.2%}"
     
-    send_email(SENDER_EMAIL, SENDER_PASSWORD, RECEIVER_EMAIL, subject, body)   
-    #return render_template('report.html', f1_score=f"{f1:.2%}", accuracy=f"{acc:.2%}", task=task, message=message)
+    send_email(SENDER_EMAIL, SENDER_PASSWORD, RECEIVER_EMAIL, subject, body)
     hora = ctime(time())
     with open('log.csv','a') as log:
         log.write(f'{user_name},{task},{hora},{f1:.2%},{acc:.2%}\n')

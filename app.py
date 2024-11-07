@@ -9,7 +9,7 @@ import smtplib
 import tempfile
 
 # Constants
-DATA_PATH = 'data2.json'
+DATA_PATH = 'data.json'
 SENDER_EMAIL = "bot.fake.news@gmail.com"
 SENDER_PASSWORD = "yuvpgvblrhadplhq "  # App-specific password
 RECEIVER_EMAIL = "sgomgon@prhlt.upv.es"

@@ -12,7 +12,7 @@ import tempfile
 DATA_PATH = 'data.json'
 SENDER_EMAIL = "bot.fake.news@gmail.com"
 SENDER_PASSWORD = "yuvpgvblrhadplhq "  # App-specific password
-RECEIVER_EMAIL = "sgomgon@prhlt.upv.es"
+RECEIVER_EMAIL = "prosso@dsic.upv.es"
 PASSWORDS = ['fsu']
 LABEL = {'Real': 1, 'Fake': 0}
 
@@ -177,5 +177,5 @@ def send_report():
 #         return redirect(url, code=301)
 
 if __name__ == '__main__':
-    app.run(debug=True) # For local development
-    #app.run(host='0.0.0.0', port=80, debug = False) # For deployment
+    #app.run(debug=True) # For local development
+    app.run(host='0.0.0.0', port=80, debug = False) # For deployment

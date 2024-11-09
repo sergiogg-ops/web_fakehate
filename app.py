@@ -26,8 +26,8 @@ Session(app)
 data = read_json(DATA_PATH)
 
 def sample_data(data, task):
-    #MAX = 50 if task == 'hate speech' else 20
-    MAX = 2
+    MAX = 50 if task == 'hate speech' else 20
+    #MAX = 2
     subset = data[data['task'] == task].sample(MAX)
     idxs = subset.index.tolist()
     if task == 'fake news':

@@ -12,7 +12,7 @@ import tempfile
 DATA_PATH = 'data.json'
 SENDER_EMAIL = "bot.fake.news@gmail.com"
 SENDER_PASSWORD = "yuvpgvblrhadplhq "  # App-specific password
-RECEIVER_EMAIL = "prosso@dsic.upv.es"
+RECEIVER_EMAIL = "sgomgon@prhlt.upv.es"
 PASSWORDS = ['fsu']
 LABEL = {'Real': 1, 'Fake': 0}
 
@@ -32,7 +32,7 @@ def sample_data(data, task):
     elif task == 'hate speech':
         MAX = 50
     else:
-        MAX = 53
+        MAX = 50
     #MAX = 20 if task == 'fake news' else 50
     subset = data[data['task'] == task].sample(MAX)
     idxs = subset.index.tolist()
@@ -147,6 +147,8 @@ def report():
     
     f1 = f1_score(labels, results)
     acc = accuracy_score(labels, results)
+    session['f1'] = f1
+    session['acc'] = acc
     return render_template('report.html', f1_score=f"{f1:.2%}", accuracy=f"{acc:.2%}", task=task)
 
 
@@ -160,8 +162,8 @@ def send_report():
     results = session['results']
     labels = session['labels']
     
-    f1 = f1_score(labels, results)
-    acc = accuracy_score(labels, results)
+    f1 = session['f1']
+    acc = session['acc']
     
     subject = f"{task.capitalize()} Classification Report: {user_name}"
     body = f"Report of {user_name}:\nF1 Score: {f1:.2%}\nAccuracy: {acc:.2%}"
@@ -183,5 +185,5 @@ def send_report():
 #         return redirect(url, code=301)
 
 if __name__ == '__main__':
-    #app.run(debug=True) # For local development
-    app.run(host='0.0.0.0', port=80, debug = False) # For deployment
+    app.run(debug=True) # For local development
+    #app.run(host='0.0.0.0', port=80, debug = False) # For deployment

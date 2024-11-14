@@ -1,1 +1,61 @@
 Usuario,Tarea,Hora,F-1 score,Accuracy
+Ella Andersson,fake news,Mon Nov 11 15:33:53 2024,70.00%,70.00%
+Lauren Hopkins,stereotype,Mon Nov 11 15:36:06 2024,48.57%,32.08%
+Michael Gradisher,fake news,Mon Nov 11 15:37:51 2024,71.43%,60.00%
+Michael Gradisher,fake news,Mon Nov 11 15:37:53 2024,71.43%,60.00%
+Rodrigo del Monte Garcia,stereotype,Mon Nov 11 15:37:53 2024,75.29%,60.38%
+Dante Kakhadze,stereotype,Mon Nov 11 15:38:20 2024,34.38%,20.75%
+Jack Uhde,fake news,Mon Nov 11 15:39:27 2024,75.86%,65.00%
+Ella Andersson,hate speech,Mon Nov 11 15:39:33 2024,27.78%,48.00%
+Hannah Maritz,stereotype,Mon Nov 11 15:40:24 2024,76.74%,62.26%
+Ben Rigg,fake news,Mon Nov 11 15:40:55 2024,82.76%,75.00%
+Ava Halpert,stereotype,Mon Nov 11 15:41:12 2024,76.74%,62.26%
+Gavin Warshauer,stereotype,Mon Nov 11 15:42:26 2024,70.73%,54.72%
+Leah Cohn,fake news,Mon Nov 11 15:43:07 2024,88.00%,85.00%
+Lauren Hopkins,irony,Mon Nov 11 15:44:10 2024,39.13%,47.17%
+Lucas Staab,stereotype,Mon Nov 11 15:44:45 2024,76.74%,62.26%
+LaShara Som,stereotype,Mon Nov 11 15:44:53 2024,65.82%,49.06%
+Noah Kirson,stereotype,Mon Nov 11 15:45:32 2024,75.29%,60.38%
+Raegan McMullan,stereotype,Mon Nov 11 15:45:39 2024,67.50%,50.94%
+Gavin Warshauer,hate speech,Mon Nov 11 15:46:06 2024,53.06%,54.00%
+Rodrigo del Monte Garcia,irony,Mon Nov 11 15:46:52 2024,72.73%,71.70%
+Micaela Garcia,fake news,Mon Nov 11 15:47:00 2024,83.33%,80.00%
+Julio,fake news,Mon Nov 11 15:47:05 2024,47.06%,55.00%
+Ella Andersson,stereotype,Mon Nov 11 15:47:10 2024,75.29%,60.38%
+Michael Gradisher,stereotype,Mon Nov 11 15:47:14 2024,82.22%,69.81%
+Michael Gradisher,stereotype,Mon Nov 11 15:47:16 2024,82.22%,69.81%
+Hannah Maritz,fake news,Mon Nov 11 15:47:53 2024,69.57%,65.00%
+Thomas,fake news,Mon Nov 11 15:48:19 2024,50.00%,50.00%
+sophia rowan,stereotype,Mon Nov 11 15:48:54 2024,83.52%,71.70%
+Noah Kirson,fake news,Mon Nov 11 15:49:18 2024,63.64%,60.00%
+Jack Uhde,stereotype,Mon Nov 11 15:49:58 2024,84.78%,73.58%
+Leah Cohn,stereotype,Mon Nov 11 15:50:03 2024,88.42%,79.25%
+Sydney Feldman,stereotype,Mon Nov 11 15:50:17 2024,79.55%,66.04%
+Michael Gradisher,irony,Mon Nov 11 15:52:00 2024,75.00%,69.81%
+Landon Pogreba,stereotype,Mon Nov 11 15:52:17 2024,73.81%,58.49%
+Dylan Bauer,stereotype,Mon Nov 11 15:53:22 2024,76.74%,62.26%
+Hannah Maritz,hate speech,Mon Nov 11 15:53:32 2024,65.38%,64.00%
+Ben R,stereotype,Mon Nov 11 15:55:47 2024,78.16%,64.15%
+Julio,stereotype,Mon Nov 11 15:55:47 2024,78.16%,64.15%
+Michael Gradisher,hate speech,Mon Nov 11 15:56:27 2024,50.85%,42.00%
+Noah Kirson,hate speech,Mon Nov 11 15:57:44 2024,63.49%,54.00%
+Thomas,stereotype,Mon Nov 11 16:00:15 2024,82.22%,69.81%
+Ben Rigg,hate speech,Mon Nov 11 16:06:29 2024,83.87%,80.00%
+Hannah Maritz,irony,Mon Nov 11 17:10:09 2024,66.67%,62.26%
+Dante Kakhadze,irony,Mon Nov 11 17:10:44 2024,80.77%,81.13%
+Jack,irony,Mon Nov 11 17:10:54 2024,67.69%,60.38%
+Leah Cohn,irony,Mon Nov 11 17:10:55 2024,56.14%,52.83%
+Gavin Warshauer,irony,Mon Nov 11 17:11:04 2024,56.60%,56.60%
+Julio,stereotype,Mon Nov 11 17:11:14 2024,78.16%,64.15%
+Sophia,irony,Mon Nov 11 17:11:15 2024,75.76%,69.81%
+Noah Kirson,irony,Mon Nov 11 17:11:17 2024,66.67%,60.38%
+Ava Halpert,irony,Mon Nov 11 17:12:16 2024,72.73%,71.70%
+Dylan Bauer,irony,Mon Nov 11 17:12:27 2024,56.60%,56.60%
+Landon Pogreba,irony,Mon Nov 11 17:12:57 2024,57.69%,58.49%
+Raegan McMullan,irony,Mon Nov 11 17:13:22 2024,50.98%,52.83%
+Ben Rigg,irony,Mon Nov 11 17:13:46 2024,69.39%,71.70%
+Thomas,irony,Mon Nov 11 17:14:24 2024,71.88%,66.04%
+Ella Andersson,irony,Mon Nov 11 17:14:30 2024,50.98%,52.83%
+sydney,irony,Mon Nov 11 17:14:50 2024,76.19%,71.70%
+LaShara Som,irony,Mon Nov 11 17:16:35 2024,45.45%,54.72%
+Julio,irony,Mon Nov 11 17:16:40 2024,81.25%,77.36%

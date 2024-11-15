@@ -76,8 +76,6 @@ def start():
         password = request.form.get('password')
         if not password in PASSWORDS:
             return render_template('index.html', error='Invalid password')
-        #password = input_request['password']
-        #texts, headlines, labels = read_data(DATA_PATH, task)
         idxs, labels = sample_data(data, task)
         
         # Store data in server-side session
@@ -86,6 +84,8 @@ def start():
         session['results'] = [0] * len(idxs)
         session['curr_t'] = 0
         session['task'] = task
+        session['f1'] = 0
+        session['acc'] = 0
     except:
         print('Error')
     return redirect(url_for('classify'))

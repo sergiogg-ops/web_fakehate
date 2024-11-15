@@ -162,4 +162,3 @@ cython_debug/
 #.idea/
 log.csv
 answ.json
-stereo_add.py

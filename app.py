@@ -14,7 +14,14 @@ SENDER_EMAIL = "bot.fake.news@gmail.com"
 SENDER_PASSWORD = "yuvpgvblrhadplhq "  # App-specific password
 RECEIVER_EMAIL = "sgomgon@prhlt.upv.es"
 PASSWORDS = ['fsu']
-LABEL = {'Real': 1, 'Fake': 0}
+#LABEL = {'Real': 1, 'Fake': 0}
+LABEL = {
+    'fake news': ['Fake',   'Real'],
+    'hate speech': ['Hate Speech', 'Non Hate Speech'],
+    'stereotype': ['Stereotypical', 'Non Stereotypical'],
+    'irony': ['Ironic', 'Non Ironic'],
+    'sexism': ['Sexist', 'Non Sexist'],
+}
 
 app = Flask(__name__)
 
@@ -76,8 +83,6 @@ def start():
         password = request.form.get('password')
         if not password in PASSWORDS:
             return render_template('index.html', error='Invalid password')
-        #password = input_request['password']
-        #texts, headlines, labels = read_data(DATA_PATH, task)
         idxs, labels = sample_data(data, task)
         
         # Store data in server-side session
@@ -86,6 +91,8 @@ def start():
         session['results'] = [0] * len(idxs)
         session['curr_t'] = 0
         session['task'] = task
+        session['f1'] = 0
+        session['acc'] = 0
     except:
         print('Error')
     return redirect(url_for('classify'))
@@ -185,5 +192,5 @@ def send_report():
 #         return redirect(url, code=301)
 
 if __name__ == '__main__':
-    app.run(debug=True) # For local development
-    #app.run(host='0.0.0.0', port=80, debug = False) # For deployment
+    #app.run(debug=True) # For local development
+    app.run(host='0.0.0.0', port=80, debug = False) # For deployment

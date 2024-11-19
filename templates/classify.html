@@ -67,17 +67,36 @@
       <div class="classify-container1">
         <div class="classify-container2">
           <div class="classify-container3">
-            <span id="counter" class="classify-text1">Text {{ current }}/{{ max }}</span>
+            <span id="counter" class="classify-text1">{{ current }}/{{ max }}</span>
             {% if headline %}
               <h1 id="header">{{ headline }}</h1>
             {% endif %}
           </div>
         </div>
-        <div class="classify-container4">
-          <span>
-            {{ text }}
-          </span>
+        {% if image %}
+        <div>
+          <img
+            src="{{ url_for('static', filename='memes_images/' + image) }}"
+            alt="Meme"
+            class="classify-image"
+          />
         </div>
+        {% endif %}
+        {% if video %}
+        <div>
+          <div>
+            <video class="classify-video" controls>
+              <source src="{{ url_for('static', filename='tiktok_videos/' + video) }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+        {% endif %}
+        <!--<div class="classify-container4">-->
+          <t1>
+            {{ text }}
+          </t1>
+        <!--</div>-->
         <form id="classifForm" action="{{ url_for('submit_classification') }}" method="POST">
           <input type="hidden" name="classification" id="classifInput">
         <div class="classify-container5">

@@ -93,7 +93,7 @@
                                             <span class="home-text18">Fake News Detection</span>
                                         </fragment>
                                     </h1>
-                                    <button type="submit" id="fake_news_b" class="features22-button1 button" onclick="document.getElementById('taskInput').value='fake news'">
+                                    <button type="submit" id="fake_news_b" class="features22-button1 button" onclick="document.getElementById('taskInput').value='fake news detection'">
                                         <span>
                                             <fragment class="home-fragment14">
                                                 <span class="home-text14">Start test</span>
@@ -109,7 +109,7 @@
                                             <span class="home-text19">Hate Speech Detection</span>
                                         </fragment>
                                     </h1>
-                                    <button type="submit" id="hate_speech_b" class="features22-button2 button" onclick="document.getElementById('taskInput').value='hate speech'">
+                                    <button type="submit" id="hate_speech_b" class="features22-button2 button" onclick="document.getElementById('taskInput').value='hate speech detection'">
                                         <span>
                                             <fragment class="home-fragment15">
                                                 <span class="home-text15">Start test</span>
@@ -125,7 +125,7 @@
                                             <span class="home-text20">Stereotype Identification</span>
                                         </fragment>
                                     </h1>
-                                    <button type="submit" id="stereotype_b" class="features22-button3 button" onclick="document.getElementById('taskInput').value='stereotype'">
+                                    <button type="submit" id="stereotype_b" class="features22-button3 button" onclick="document.getElementById('taskInput').value='stereotype identification'">
                                         <span>
                                             <fragment class="home-fragment16">
                                                 <span class="home-text16">Start test</span>
@@ -138,10 +138,100 @@
                                     <img alt="Irony Image" src="{{ url_for('static', filename='public/irony.webp') }}" class="features22-image4 thq-img-round thq-img-ratio-1-1" />
                                     <h1 class="features22-text20">
                                         <fragment class="home-fragment21">
-                                            <span class="home-text21">Irony detection</span>
+                                            <span class="home-text21">Irony <br> detection</span>
                                         </fragment>
                                     </h1>
-                                    <button type="submit" id="irony_b" class="features22-button4 button" onclick="document.getElementById('taskInput').value='irony'">
+                                    <button type="submit" id="irony_b" class="features22-button4 button" onclick="document.getElementById('taskInput').value='irony detection'">
+                                        <span>
+                                            <fragment class="home-fragment17">
+                                                <span class="home-text17">Start test</span>
+                                            </fragment>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="features22-card4 thq-flex-column thq-card">
+                                    <img alt="Sexism in tweets image" src="{{ url_for('static', filename='public/sexism_twitter2.jpeg') }}" class="features22-image4 thq-img-round thq-img-ratio-1-1" />
+                                    <h1 class="features22-text20">
+                                        <fragment class="home-fragment21">
+                                            <span class="home-text21">Sexism identification in tweets</span>
+                                        </fragment>
+                                    </h1>
+                                    <button type="submit" id="sexism_tweets_b" class="features22-button4 button" onclick="document.getElementById('taskInput').value='sexism identification in tweets'">
+                                        <span>
+                                            <fragment class="home-fragment17">
+                                                <span class="home-text17">Start test</span>
+                                            </fragment>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="features22-card4 thq-flex-column thq-card">
+                                    <img alt="Stereotype in sexist tweets image" src="{{ url_for('static', filename='public/stereotype_twitter.webp') }}" class="features22-image4 thq-img-round thq-img-ratio-1-1" />
+                                    <h1 class="features22-text20">
+                                        <fragment class="home-fragment21">
+                                            <span class="home-text21">Stereotype identification in sexist tweets</span>
+                                        </fragment>
+                                    </h1>
+                                    <button type="submit" id="sexism_tweets_b" class="features22-button4 button" onclick="document.getElementById('taskInput').value='stereotype identification in sexist tweets'">
+                                        <span>
+                                            <fragment class="home-fragment17">
+                                                <span class="home-text17">Start test</span>
+                                            </fragment>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="features22-card4 thq-flex-column thq-card">
+                                    <img alt="Sexism in memes image" src="{{ url_for('static', filename='public/sexism_memes.webp') }}" class="features22-image4 thq-img-round thq-img-ratio-1-1" />
+                                    <h1 class="features22-text20">
+                                        <fragment class="home-fragment21">
+                                            <span class="home-text21">Sexism identification in memes</span>
+                                        </fragment>
+                                    </h1>
+                                    <button type="submit" id="sexism_tweets_b" class="features22-button4 button" onclick="document.getElementById('taskInput').value='sexism identification in memes'">
+                                        <span>
+                                            <fragment class="home-fragment17">
+                                                <span class="home-text17">Start test</span>
+                                            </fragment>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="features22-card4 thq-flex-column thq-card">
+                                    <img alt="Stereotype in sexist memes image" src="{{ url_for('static', filename='public/sexism_memes.jpg') }}" class="features22-image4 thq-img-round thq-img-ratio-1-1" />
+                                    <h1 class="features22-text20">
+                                        <fragment class="home-fragment21">
+                                            <span class="home-text21">Stereotype identification in sexist memes</span>
+                                        </fragment>
+                                    </h1>
+                                    <button type="submit" id="sexism_tweets_b" class="features22-button4 button" onclick="document.getElementById('taskInput').value='stereotype identification in sexist memes'">
+                                        <span>
+                                            <fragment class="home-fragment17">
+                                                <span class="home-text17">Start test</span>
+                                            </fragment>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="features22-card4 thq-flex-column thq-card">
+                                    <img alt="Sexism in videos image" src="{{ url_for('static', filename='public/sexism_tiktok.jpeg') }}" class="features22-image4 thq-img-round thq-img-ratio-1-1" />
+                                    <h1 class="features22-text20">
+                                        <fragment class="home-fragment21">
+                                            <span class="home-text21">Sexism identification in tiktok videos</span>
+                                        </fragment>
+                                    </h1>
+                                    <button type="submit" id="sexism_tweets_b" class="features22-button4 button" onclick="document.getElementById('taskInput').value='sexism identification in tiktoks'">
+                                        <span>
+                                            <fragment class="home-fragment17">
+                                                <span class="home-text17">Start test</span>
+                                            </fragment>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="features22-card4 thq-flex-column thq-card">
+                                    <img alt="Stereotype in sexist videos image" src="{{ url_for('static', filename='public/.webp') }}" class="features22-image4 thq-img-round thq-img-ratio-1-1" />
+                                    <h1 class="features22-text20">
+                                        <fragment class="home-fragment21">
+                                            <span class="home-text21">Stereotype identification in sexist tiktok videos</span>
+                                        </fragment>
+                                    </h1>
+                                    <button type="submit" id="sexism_tweets_b" class="features22-button4 button" onclick="document.getElementById('taskInput').value='stereotype identification in sexist tiktoks'">
                                         <span>
                                             <fragment class="home-fragment17">
                                                 <span class="home-text17">Start test</span>

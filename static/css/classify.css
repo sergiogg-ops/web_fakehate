@@ -24,6 +24,11 @@
 h1 {
   font-size: 1.5rem;
   margin: 0;
+  text-align: center;
+}
+
+t1 {
+  text-align: center;
 }
 
 .classify-container4 {
@@ -58,4 +63,13 @@ h1 {
   margin-left: var(--dl-space-space-unit);
   padding-left: var(--dl-space-space-unit);
   background-color: #fb7025;
+}
+.classify-image {
+  display: block;
+  margin: 0 auto;
+}
+.classify-video {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%; /* This ensures the video is responsive */
 }

@@ -16,7 +16,7 @@ RECEIVER_EMAIL = "sgomgon@prhlt.upv.es"
 PASSWORDS = ['fsu']
 #LABEL = {'Real': 1, 'Fake': 0}
 LABEL = {
-    'fake news': ['Fake',   'Real'],
+    'fake news': ['Fake', 'Real'],
     'hate speech': ['Hate Speech', 'Non Hate Speech'],
     'stereotype': ['Stereotypical', 'Non Stereotypical'],
     'irony': ['Ironic', 'Non Ironic'],
@@ -32,22 +32,22 @@ app.secret_key = 'f4k3nh4t3'  # For session management, update this key
 Session(app)
 data = read_json(DATA_PATH)
 
-def sample_data(data, task):
-    #MAX = 50 if task == 'hate speech' else 20
-    if task == 'fake news':
+def sample_data(data, test):
+    subset = data[data['test'].apply(lambda x: test in x)]
+    if test == 'fake news detection':
         MAX = 20
-    elif task == 'hate speech':
+    elif test == 'stereotype identification in sexist tiktoks':
+        MAX = 25
+    elif test in ['hate speech detection', 'stereotype identification', 'irony detection', 'sexism identification in tiktoks']:
         MAX = 50
     else:
-        MAX = 50
-    #MAX = 20 if task == 'fake news' else 50
-    subset = data[data['task'] == task].sample(MAX)
+        MAX = len(subset)
+    subset = subset.sample(MAX)
     idxs = subset.index.tolist()
-    if task == 'fake news':
-        labels = [LABEL[l] for l in data['label'][idxs]]
-    else:
-        labels = data['label'][idxs].tolist()
-    return idxs, labels
+    labels = [subset['label'][i][subset['test'][i].index(test)] for i in idxs]
+    print('Labels:',labels)
+    media = subset['media'][idxs].tolist()
+    return idxs, labels, media
 
 
 def send_email(sender_email, sender_password, recipient_email, subject, body):
@@ -79,18 +79,20 @@ def index():
 @app.route('/start', methods=['POST'])
 def start():
     try:
-        task = request.form.get('task')
+        test = request.form.get('task')
         password = request.form.get('password')
         if not password in PASSWORDS:
             return render_template('index.html', error='Invalid password')
-        idxs, labels = sample_data(data, task)
+        idxs, labels, media = sample_data(data, test)
         
         # Store data in server-side session
         session['texts'] = idxs
         session['labels'] = labels
         session['results'] = [0] * len(idxs)
         session['curr_t'] = 0
-        session['task'] = task
+        session['test'] = test
+        session['task'] = data['task'][idxs[0]][data['test'][idxs[0]].index(test)]
+        session['media'] = media
         session['f1'] = 0
         session['acc'] = 0
     except:
@@ -108,25 +110,29 @@ def classify():
         return redirect(url_for('report'))
     
     text = data['text'][session['texts'][curr_t]]
-    headline = data['title'][session['texts'][curr_t]] if session['task'] == 'fake news' else ''
-    task = session['task']
+    text = text if text else ''
+    headline = data['title'][session['texts'][curr_t]] if session['test'] == 'fake news detection' else ''
+    test = session['test']
     
-    if task == 'fake news':
-        name1 = 'Real'
-        name2 = 'Fake'
-    elif task == 'hate speech':
-        name1 = 'Hate Speech'
-        name2 = 'Non Hate Speech'
-    elif task == 'stereotype':
-        name1 = 'Stereotypical'
-        name2 = 'Non Stereotypical'
-    elif task == 'irony':
-        name1 = 'Ironic'
-        name2 = 'Non Ironic'
-    else:
-        name1 = 'Yes'
-        name2 = 'No'
-    return render_template('classify.html', task=task, text=text, headline=headline, button1=name1, button2=name2,current=curr_t+1,max=len(session['texts']))
+    task = session['task']
+    name1 = LABEL[task][0]
+    name2 = LABEL[task][1]
+    # print('Test:',test)
+    # print('Media:',session['media'][curr_t])
+    # print('Headline:',headline)
+    # print('Text:',text)
+    image = session['media'][curr_t] if 'meme' in test else None
+    video = session['media'][curr_t] if 'tiktok' in test else None
+    return render_template('classify.html', 
+                           task=test, 
+                           text=text, 
+                           headline=headline, 
+                           button1=name1, 
+                           button2=name2,
+                           current=curr_t+1,
+                           max=len(session['texts']),
+                           image=image,
+                           video=video)
 
 
 @app.route('/submit_classification', methods=['POST'])
@@ -149,14 +155,16 @@ def report():
         return redirect(url_for('index'))
         
     results = session['results']
+    print('Results:',results)
     labels = session['labels']
-    task = session['task']
+    print('Labels:',labels)
+    test = session['test']
     
     f1 = f1_score(labels, results)
     acc = accuracy_score(labels, results)
     session['f1'] = f1
     session['acc'] = acc
-    return render_template('report.html', f1_score=f"{f1:.2%}", accuracy=f"{acc:.2%}", task=task)
+    return render_template('report.html', f1_score=f"{f1:.2%}", accuracy=f"{acc:.2%}", task=test)
 
 
 @app.route('/send_report', methods=['POST'])
@@ -165,20 +173,20 @@ def send_report():
         return redirect(url_for('index'))
         
     user_name = request.form.get('user_name')
-    task = session['task']
+    test = session['test']
     results = session['results']
     labels = session['labels']
     
     f1 = session['f1']
     acc = session['acc']
     
-    subject = f"{task.capitalize()} Classification Report: {user_name}"
+    subject = f"{test.capitalize()} Classification Report: {user_name}"
     body = f"Report of {user_name}:\nF1 Score: {f1:.2%}\nAccuracy: {acc:.2%}"
     
     send_email(SENDER_EMAIL, SENDER_PASSWORD, RECEIVER_EMAIL, subject, body)
     hora = ctime(time())
     with open('log.csv','a') as log:
-        log.write(f'{user_name},{task},{hora},{f1:.2%},{acc:.2%}\n')
+        log.write(f'{user_name},{test},{hora},{f1:.2%},{acc:.2%}\n')
     log = DataFrame({'user':user_name,'time':hora,'samples':str(session['texts']),'answ':str(results)},index=[0])
     log = concat((read_json('answ.json'),log),ignore_index=True)
     log.to_json('answ.json',orient='records')
@@ -192,5 +200,5 @@ def send_report():
 #         return redirect(url, code=301)
 
 if __name__ == '__main__':
-    #app.run(debug=True) # For local development
-    app.run(host='0.0.0.0', port=80, debug = False) # For deployment
+    app.run(debug=True) # For local development
+    #app.run(host='0.0.0.0', port=80, debug = False) # For deployment

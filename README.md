@@ -36,7 +36,7 @@ chmod 777 flaskapp.sock
 ```
 For this last step you can also use the `restart.sh` script.
 
-### Web maintainance
+### Web maintenance
 There are several variables that should be adjusted for each application of the web:
 - The email with the results of each session is sent using a gmail account. You should set the constant `SENDER_EMAIL` to the address of you gmail account. You will need to generate an app specific password and set the constant `SENDER_PASSWORD` to it. Finally, you should set the `RECEIVER_EMAIL` constant to the account in which you would like to receive the reports. This late email account doesn't need to be gmail account, it can be from any mail server.
 - If you want to change the data that the app uses you can either modify the `data.json` file or update the `DATA_PATH` constant to your json file.

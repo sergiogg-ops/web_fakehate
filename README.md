@@ -45,6 +45,7 @@ There are several variables that should be adjusted for each application of the 
     - `title`: stores the headline of the fake news test samples.
     - `text`: stores the main text of the samples.
     - `label`: stores the label of the samples. For the fake news text it should contain plain text with either 'Real' or 'Fake. For the rest of the task is a binary value (0 or 1).
+    - `task`: stores the identificator of the task in which the sample is included.
 - The evaluation of the sessions is stored in the `log.csv` file and includes the user name, test name, time, F-1 score and accuracy obtained by the user. More detailed information is stored in the `answ.json` file, with also the samples index that were presented to the user and the classification that they performed.
 - For maintenance and debugging the app should be runned in debug mode: `app.run(debug=True)`.
 - The password that the users must provide should be included in the list of the constant `PASSWORDS`.

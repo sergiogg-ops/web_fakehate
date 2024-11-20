@@ -6,7 +6,7 @@ This is the source code for creating a web page to test the abilities of humans 
 - Steretype identification: 50 short texts are swon in a random order and must be classified between 'Steretypical' or 'Non stereotypical'.
 - Irony detection: 50 short texts are shown in a random order and must be classified between 'Ironic' or 'Non ironic'.
 
-The result of each session is sent to an email address and also stored in the local file system.
+The result of each session is sent to an email address and also stored in the local file system. To control who can do the test we have included a password that need to be verified at the beggining of each session.
 
 ## Administrator guide
 ### Deploy process
@@ -46,3 +46,4 @@ There are several variables that should be adjusted for each application of the 
     - `text`: stores the main text of the samples.
     - `label`: stores the label of the samples. For the fake news text it should contain plain text with either 'Real' or 'Fake. For the rest of the task is a binary value (0 or 1).
 - The evaluation of the sessions is stored in the `log.csv` file and includes the user name, test name, time, F-1 score and accuracy obtained by the user. More detailed information is stored in the `answ.json` file, with also the samples index that were presented to the user and the classification that they performed.
+- The password that the users must provide should be included in the list of the constant `PASSWORDS`.

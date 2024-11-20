@@ -67,9 +67,14 @@ t1 {
 .classify-image {
   display: block;
   margin: 0 auto;
+  width: 25%; /* This ensures the image is responsive */
+  max-width: 100%;
+  height: auto;
 }
 .classify-video {
   display: block;
   margin: 0 auto;
+  width: 25%; /* This ensures the video is responsive */
   max-width: 100%; /* This ensures the video is responsive */
+  height: auto;
 }

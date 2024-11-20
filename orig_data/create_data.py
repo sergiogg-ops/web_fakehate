@@ -12,6 +12,8 @@ df_fn['label'] = df_fn['label'].apply(lambda x: [LABEL['fake news'].index(x)])
 df_hs['label'] = df_hs['label'].apply(lambda x: [int(x)])
 df_fn['test'] = [['fake news detection'] for _ in range(len(df_fn))]
 df_hs['test'] = [['hate speech detection'] for _ in range(len(df_hs))]
+df_fn.rename(columns={'title':'headline'},inplace=True)
+df_hs['headline'] = None
 df_fh = pd.concat([df_fn,df_hs],ignore_index=True)
 df_fh['task'] = df_fh['task'].apply(lambda x: [x])
 df_fh['media'] = None
@@ -73,6 +75,7 @@ df_exists_memes['task'] = task
 df_exists_memes['test'] = test
 df_exists_memes['headline'] = None
 df_exists_memes.rename(columns={'img':'media','text':'meme_text'},inplace=True)
+df_exists_memes['media_type'] = 'image'
 print('\tSexism identification in memes:',len(df_exists_memes[df_exists_memes['task'].apply(lambda x: 'sexism' in x)]))
 print('\tStereotype identification in sexist memes:',len(df_exists_memes[df_exists_memes['task'].apply(lambda x: 'stereotype' in x)]))
 
@@ -95,11 +98,21 @@ df_exists_tiktoks['task'] = task
 df_exists_tiktoks['test'] = test
 df_exists_tiktoks.rename(columns={'title':'headline'},inplace=True)
 df_exists_tiktoks['media'] = df_exists_tiktoks['id'].apply(lambda x: str(x)+'.mp4')
+df_exists_tiktoks['media_type'] = 'video'
 print('\tSexism identification in tiktoks:',len(df_exists_tiktoks[df_exists_tiktoks['task'].apply(lambda x: 'sexism' in x)]))
 print('\tStereotype identification in sexist tiktoks:',len(df_exists_tiktoks[df_exists_tiktoks['task'].apply(lambda x: 'stereotype' in x)]))
 
+print('\nLOCO')
+df_loco = pd.read_json('orig_data/loco.json')
+df_loco.rename(columns={'txt':'text', 'title':'headline','subcorpus':'label','date':'_date'},inplace=True)
+df_loco['label'] = df_loco['label'].apply(lambda x: [int(LABEL['conspiracy'].index(x.capitalize()))])
+df_loco['task'] = [['conspiracy']]*len(df_loco)
+df_loco['test'] = [['conspiracy detection in articles']]*len(df_loco)
+df_loco['media'] = None
+print('\tConspiracy detection:',len(df_loco[df_loco['task'].apply(lambda x: 'conspiracy' in x)]))
+
 print('\n\nFINAL')
-data = pd.concat([df_fh,df_si, df_exists_tweets,df_exists_memes, df_exists_tiktoks],ignore_index=True)
+data = pd.concat([df_fh,df_si, df_exists_tweets,df_exists_memes, df_exists_tiktoks, df_loco],ignore_index=True)
 print('\tFake news:',sum(data['task'].apply(lambda x: 'fake news' in x)))
 print('\tHate speech:',sum(data['task'].apply(lambda x: 'hate speech' in x)))
 print('\tStereotype:',sum(data['task'].apply(lambda x: 'stereotype' in x)))

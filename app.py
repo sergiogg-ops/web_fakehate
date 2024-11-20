@@ -21,6 +21,8 @@ LABEL = {
     'stereotype': ['Stereotypical', 'Non Stereotypical'],
     'irony': ['Ironic', 'Non Ironic'],
     'sexism': ['Sexist', 'Non Sexist'],
+    'conspiracy': ['Conspiracy', 'Mainstream'],
+    'oppostional': ['Conspiracy', 'Critical Thinking']
 }
 
 app = Flask(__name__)
@@ -34,7 +36,7 @@ data = read_json(DATA_PATH)
 
 def sample_data(data, test):
     subset = data[data['test'].apply(lambda x: test in x)]
-    if test == 'fake news detection':
+    if test in ['fake news detection','conspiracy detection in articles']:
         MAX = 20
     elif test == 'stereotype identification in sexist tiktoks':
         MAX = 25
@@ -45,10 +47,8 @@ def sample_data(data, test):
     subset = subset.sample(MAX)
     idxs = subset.index.tolist()
     labels = [subset['label'][i][subset['test'][i].index(test)] for i in idxs]
-    print('Labels:',labels)
     media = subset['media'][idxs].tolist()
     return idxs, labels, media
-
 
 def send_email(sender_email, sender_password, recipient_email, subject, body):
     """
@@ -70,35 +70,32 @@ def send_email(sender_email, sender_password, recipient_email, subject, body):
         print(f"Error: {e}")
         return False
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
 
-
 @app.route('/start', methods=['POST'])
 def start():
-    try:
-        test = request.form.get('task')
-        password = request.form.get('password')
-        if not password in PASSWORDS:
-            return render_template('index.html', error='Invalid password')
-        idxs, labels, media = sample_data(data, test)
-        
-        # Store data in server-side session
-        session['texts'] = idxs
-        session['labels'] = labels
-        session['results'] = [0] * len(idxs)
-        session['curr_t'] = 0
-        session['test'] = test
-        session['task'] = data['task'][idxs[0]][data['test'][idxs[0]].index(test)]
-        session['media'] = media
-        session['f1'] = 0
-        session['acc'] = 0
-    except:
-        print('Error')
+    #try:
+    test = request.form.get('task')
+    password = request.form.get('password')
+    if not password in PASSWORDS:
+        return render_template('index.html', error='Invalid password')
+    idxs, labels, media = sample_data(data, test)
+    
+    # Store data in server-side session
+    session['texts'] = idxs
+    session['labels'] = labels
+    session['results'] = [0] * len(idxs)
+    session['curr_t'] = 0
+    session['test'] = test
+    session['task'] = data['task'][idxs[0]][data['test'][idxs[0]].index(test)]
+    session['media'] = media
+    session['f1'] = 0
+    session['acc'] = 0
+    # except:
+    #     print('Error')
     return redirect(url_for('classify'))
-
 
 @app.route('/classify')
 def classify():
@@ -111,18 +108,17 @@ def classify():
     
     text = data['text'][session['texts'][curr_t]]
     text = text if text else ''
-    headline = data['title'][session['texts'][curr_t]] if session['test'] == 'fake news detection' else ''
+    headline = data['headline'][session['texts'][curr_t]]
     test = session['test']
-    
     task = session['task']
     name1 = LABEL[task][0]
     name2 = LABEL[task][1]
+    image = session['media'][curr_t] if session['media'] and data['media_type'][session['texts'][curr_t]] == 'image' else None
+    video = session['media'][curr_t] if session['media'] and data['media_type'][session['texts'][curr_t]] == 'video' else None
     # print('Test:',test)
     # print('Media:',session['media'][curr_t])
     # print('Headline:',headline)
     # print('Text:',text)
-    image = session['media'][curr_t] if 'meme' in test else None
-    video = session['media'][curr_t] if 'tiktok' in test else None
     return render_template('classify.html', 
                            task=test, 
                            text=text, 
@@ -133,7 +129,6 @@ def classify():
                            max=len(session['texts']),
                            image=image,
                            video=video)
-
 
 @app.route('/submit_classification', methods=['POST'])
 def submit_classification():
@@ -148,16 +143,13 @@ def submit_classification():
         session.modified = True
     return redirect(url_for('classify'))
 
-
 @app.route('/report')
 def report():
     if 'results' not in session:
         return redirect(url_for('index'))
         
     results = session['results']
-    print('Results:',results)
     labels = session['labels']
-    print('Labels:',labels)
     test = session['test']
     
     f1 = f1_score(labels, results)
@@ -165,7 +157,6 @@ def report():
     session['f1'] = f1
     session['acc'] = acc
     return render_template('report.html', f1_score=f"{f1:.2%}", accuracy=f"{acc:.2%}", task=test)
-
 
 @app.route('/send_report', methods=['POST'])
 def send_report():
@@ -200,5 +191,5 @@ def send_report():
 #         return redirect(url, code=301)
 
 if __name__ == '__main__':
-    app.run(debug=True) # For local development
-    # app.run(host='0.0.0.0', port=80, debug = False) # For deployment
+    # app.run(debug=True) # For local development
+    app.run(host='0.0.0.0', port=80, debug = False) # For deployment

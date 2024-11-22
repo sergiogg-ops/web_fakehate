@@ -111,8 +111,20 @@ df_loco['test'] = [['conspiracy detection in articles']]*len(df_loco)
 df_loco['media'] = None
 print('\tConspiracy detection:',len(df_loco[df_loco['task'].apply(lambda x: 'conspiracy' in x)]))
 
+print('\nOppositional thinking analysis')
+df_oppo = pd.read_json('orig_data/oppositional.json')
+df_oppo = df_oppo.sample(50)
+df_oppo.rename(columns={'category':'label'},inplace=True)
+df_oppo['label'] = df_oppo['label'].apply(lambda x: [int(LABEL['oppositional thinking'].index(x.capitalize()))])
+df_oppo['task'] = [['oppositional thinking']]*len(df_oppo)
+df_oppo['test'] = [['oppositional thinking classification']]*len(df_oppo)
+df_oppo['media'] = None
+df_oppo['headline'] = None
+df_oppo['media_type'] = None
+print('\tConspiracy theories vs critical thinking:',len(df_oppo[df_oppo['task'].apply(lambda x: 'oppositional thinking' in x)]))
+
 print('\n\nFINAL')
-data = pd.concat([df_fh,df_si, df_exists_tweets,df_exists_memes, df_exists_tiktoks, df_loco],ignore_index=True)
+data = pd.concat([df_fh,df_si, df_exists_tweets,df_exists_memes, df_exists_tiktoks, df_loco, df_oppo],ignore_index=True)
 print('\tFake news:',sum(data['task'].apply(lambda x: 'fake news' in x)))
 print('\tHate speech:',sum(data['task'].apply(lambda x: 'hate speech' in x)))
 print('\tStereotype:',sum(data['task'].apply(lambda x: 'stereotype' in x)))

@@ -22,7 +22,7 @@ LABEL = {
     'irony': ['Ironic', 'Non Ironic'],
     'sexism': ['Sexist', 'Non Sexist'],
     'conspiracy': ['Conspiracy', 'Mainstream'],
-    'oppostional': ['Conspiracy', 'Critical Thinking']
+    'oppositional thinking': ['Conspiracy', 'Critical']
 }
 
 app = Flask(__name__)
@@ -191,5 +191,5 @@ def send_report():
 #         return redirect(url, code=301)
 
 if __name__ == '__main__':
-    # app.run(debug=True) # For local development
-    app.run(host='0.0.0.0', port=80, debug = False) # For deployment
+    app.run(debug=True) # For local development
+    # app.run(host='0.0.0.0', port=80, debug = False) # For deployment

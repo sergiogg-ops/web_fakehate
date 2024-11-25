@@ -12,6 +12,7 @@ This is the source code for creating a web page to test the abilities of humans 
 - Sexism identification in videos: 50 videos are shown in a random order and must be classified between 'Sexist' or 'Non sexist'.
 - Stereotype identification in sexist videos: 25 videos are shown in a random order and must be classified between 'Steretypical' or 'Non stereotypical'.
 - Conspiracy theories detection: 20 articles are shown from a total amount of 30, that must be classified between 'Conspiracy' or 'Mainstream'.
+- Conspiracy theories vs critical thinking: 50 short text are shown in random order, that must be classified between 'Conspiracy' or just 'Critical'.
 
 The result of each session is sent to an email address and also stored in the local file system. To control who can do the test we have included a password that need to be verified at the beggining of each session.
 

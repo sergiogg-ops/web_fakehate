@@ -160,8 +160,9 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
-log.csv
-answ.json
 stereo_add.py
 sec_copy/*
 orig_data/LOCO.json
+log.csv
+answ.json
+print_lab.py

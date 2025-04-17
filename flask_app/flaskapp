@@ -4,7 +4,7 @@ server {
     server_name snell.prhlt.upv.es;
 
     location / {
-        proxy_pass http://unix:/home/sergio/web_fakehate/flaskapp.sock;
+        proxy_pass http://web_fake_hate:5000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
